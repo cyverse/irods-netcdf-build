@@ -1,7 +1,7 @@
 # irods-netcdf-build
 The build and packaging logic for the iRODS NetCDF plugins,
 
-It builds the NetCDF plugins in the repo https://github.com/irods/irods_netcdf for the iRODS 4.1.9. It creates packages suitable for CentOS 6 and 7, OpenSUSE 13, and Ubuntu 12.04 and 14.04.
+It builds the NetCDF plugins in the repo https://github.com/irods/irods_netcdf for the iRODS 4.1.10. It creates packages suitable for CentOS 6 and 7, OpenSUSE 13, and Ubuntu 12.04 and 14.04.
 
 ## Requirements
 

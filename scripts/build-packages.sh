@@ -36,5 +36,5 @@ esac
 mkdir --parents /src/tar/irods/externals
 cp --no-dereference "$LibDir"/libirods*.so* /src/tar
 cp --no-dereference "$LibDir"/irods/externals/*.so* /src/tar/irods/externals
-tar --create --gzip --directory /src/tar --file /packages/"$OS"/irods-runtime-4.1.9-"$pkgId".tgz .
+tar --create --gzip --directory /src/tar --file /packages/"$OS"/irods-runtime-4.1.10-"$pkgId".tgz .
 rm --force --recursive /src/tar

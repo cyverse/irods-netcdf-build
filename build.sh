@@ -4,7 +4,7 @@ readonly OSes=(centos-6 centos-7 opensuse-13 ubuntu-12 ubuntu-14)
 
 for os in ${OSes[*]}
 do
-  image=irods-plugin-build:4.1.9-"$os"
+  image=irods-plugin-build:4.1.10-"$os"
 
   docker build --file dockerfiles/Dockerfile."$os" --tag "$image" .
 
@@ -29,27 +29,24 @@ done
 
 if [ -e packages/centos-7 ]
 then        
-  for f in $(ls packages/centos-7)
+  for f in $(ls packages/centos-7/*.rpm)
   do
-    f=packages/centos-7/"$f"
     mv "$f" "${f/centos6/centos7}"
   done
 fi
 
 if [ -e packages/ubuntu-12 ]
 then
-  for f in $(ls packages/ubuntu-12)
+  for f in $(ls packages/ubuntu-12/*.deb)
   do
-    f=packages/ubuntu-12/"$f"
     mv "$f" "${f/.deb/-ubuntu12.deb}"
   done
 fi
 
 if [ -e packages/ubuntu-14 ]
 then
-  for f in $(ls packages/ubuntu-14)
+  for f in $(ls packages/ubuntu-14/*.deb)
   do
-    f=packages/ubuntu-14/"$f"
     mv "$f" "${f/.deb/-ubuntu14.deb}"
   done
 fi
