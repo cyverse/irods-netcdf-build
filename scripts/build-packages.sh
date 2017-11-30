@@ -6,9 +6,8 @@ mkdir --parents /packages/"$OS"
 
 for pkg in api microservices icommands
 do
-  /src/"$pkg"/packaging/build.sh clean
   /src/"$pkg"/packaging/build.sh -r
-  cp /src/"$pkg"/build/* /packages/"$OS"
+  cp --update /src/"$pkg"/build/* /packages/"$OS"
 done
 
 readonly LibDir=/usr/lib
@@ -34,7 +33,6 @@ esac
 
 # Gather irods-runtime contents
 mkdir --parents /src/tar/irods/externals
-cp --no-dereference "$LibDir"/libirods*.so* /src/tar
-cp --no-dereference "$LibDir"/irods/externals/*.so* /src/tar/irods/externals
+cp --no-dereference --update "$LibDir"/libirods*.so* /src/tar
+cp --no-dereference --update "$LibDir"/irods/externals/*.so* /src/tar/irods/externals
 tar --create --gzip --directory /src/tar --file /packages/"$OS"/irods-runtime-4.1.10-"$pkgId".tgz .
-rm --force --recursive /src/tar
