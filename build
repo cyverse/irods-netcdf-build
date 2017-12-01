@@ -20,7 +20,7 @@ main()
 
   if [ ${#oses} -eq 0 ]
   then
-    oses=$AllOSes
+    oses=(${AllOSes[*]})
   else
     for candidateOS in ${oses[*]}
     do
