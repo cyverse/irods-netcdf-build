@@ -43,6 +43,14 @@ main()
     done
   fi
 
+  build_selected ${oses[*]}
+}
+
+
+build_selected()
+{
+  local oses=("$@") 
+
   for os in ${oses[*]}
   do
     local image=irods-plugin-build:4.1.10-"$os"
