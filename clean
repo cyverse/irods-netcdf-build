@@ -9,7 +9,9 @@
 
 main()
 {
-  rm --force --recursive scratch/* packages/*
+  local baseDir=$(dirname $(readlink --canonicalize "$0"))
+
+  rm --force --recursive "$baseDir"/scratch/* "$baseDir"/packages/*
   docker rmi $(docker images --quiet --filter reference=irods-plugin-build)
 }
 
