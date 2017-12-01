@@ -7,7 +7,9 @@ RUN rpmkeys --import file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 && \
       ftp://ftp.renci.org/pub/irods/releases/4.1.10/centos7/irods-dev-4.1.10-centos7-x86_64.rpm \
       ftp://ftp.renci.org/pub/irods/releases/4.1.10/centos7/irods-runtime-4.1.10-centos7-x86_64.rpm && \
     mkdir /rpmbuild /src && \
-    chmod a+w /rpmbuild 
+    chmod a+w /rpmbuild && \
+    yum --assumeyes clean all && \
+    rm --force --recursive /var/cache/yum
 
 VOLUME /src
 
