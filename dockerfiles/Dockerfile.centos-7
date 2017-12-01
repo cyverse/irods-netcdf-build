@@ -13,4 +13,4 @@ VOLUME /src
 
 WORKDIR /src
 
-CMD bash 
+CMD [ "bash" ] 
