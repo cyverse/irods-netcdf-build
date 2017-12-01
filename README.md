@@ -14,12 +14,11 @@ Docker 1 or newer.
 
 ## Building
 
-Run the script `build.sh` to buid the packages for the various operating 
-systems. The resulting packages will be the appropriate subdirectories under 
-`packages`.
+Run the script `build` to buid the packages for the various operating systems. 
+The resulting packages will be the appropriate subdirectories under `packages`.
 
 ```
-? ./build.sh
+? ./build
 
 ? tree packages
 packages

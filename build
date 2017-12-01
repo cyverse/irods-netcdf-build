@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Usage:
-#  build.sh [OS...]
+#  build [OS...]
 #
 # Parameters:
 #  OS  an operating system to build the packages for: centos-6 centos-7 
