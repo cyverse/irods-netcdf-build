@@ -6,4 +6,12 @@
 # Removes all generated packages and intermediate artifacts from the filesystem.
 #
 
-rm --force --recursive scratch/* packages/*
+
+main()
+{
+  rm --force --recursive scratch/* packages/*
+  docker rmi $(docker images --quiet --filter reference=irods-plugin-build)
+}
+
+
+main
