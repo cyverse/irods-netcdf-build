@@ -1,4 +1,15 @@
 #!/bin/bash
+#
+# Usage:
+#  build.sh [OS...]
+#
+# Parameters:
+#  OS  an operating system to build the packages for: centos-6 centos-7 
+#      ubuntu-12, ubuntu-14  
+#
+# Builds the iRODS NetCDF plugin packages. It writes them into an OS specific 
+# subdirectory of packages/.
+#
 
 readonly AllOSes=(centos-6 centos-7 ubuntu-12 ubuntu-14)
 
