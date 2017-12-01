@@ -58,8 +58,8 @@ main()
                --user=$(id -u):$(id -g) \
                --volume=$(pwd)/"$src":/src \
                --volume=$(pwd)/packages:/packages \
-               --volume=$(pwd)/scripts/build-packages.sh:/build-packages.sh \
-               "$image" /build-packages.sh "$os"
+               --volume=$(pwd)/scripts/build-packages.sh:/build-packages \
+               "$image" /build-packages "$os"
   done
 
   # There are some bugs in the NetCDF build logic
