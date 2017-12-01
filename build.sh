@@ -1,9 +1,36 @@
 #!/bin/bash
 
+readonly AllOSes=(centos-6 centos-7 ubuntu-12 ubuntu-14)
+
 
 main()
 {
-  local oses=(centos-6 centos-7 ubuntu-12 ubuntu-14)
+  local oses=("$@")
+
+  if [ ${#oses} -eq 0 ]
+  then
+    oses=$AllOSes
+  else
+    for candidateOS in ${oses[*]}
+    do
+      local verified=false
+
+      for os in ${AllOSes[*]}
+      do
+        if [ "$candidateOS" = "$os" ]
+        then
+          verified=true
+          break
+        fi
+      done
+        
+      if [ "$verified" = false ]
+      then
+        printf 'The OS %s is unsupported\n' "$candidateOS" >&2
+        return 1
+      fi
+    done
+  fi
 
   for os in ${oses[*]}
   do
@@ -54,4 +81,4 @@ main()
 
 set -e
 
-main
+main "$@"
