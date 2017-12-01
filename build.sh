@@ -63,7 +63,7 @@ main()
 
   if [ -e packages/ubuntu-12 ]
   then
-    for f in $(ls packages/ubuntu-12/*0.deb)
+    for f in $(ls packages/ubuntu-12/*0.deb 2> /dev/null)
     do
       mv "$f" "${f/.deb/-ubuntu12.deb}"
     done
@@ -71,7 +71,7 @@ main()
 
   if [ -e packages/ubuntu-14 ]
   then
-    for f in $(ls packages/ubuntu-14/*0.deb)
+    for f in $(ls packages/ubuntu-14/*0.deb 2> /dev/null)
     do
       mv "$f" "${f/.deb/-ubuntu14.deb}"
     done
