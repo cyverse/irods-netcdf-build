@@ -20,9 +20,6 @@ in
   centos-7)
     pkgId=centos7
     ;;
-  opensuse-13)
-    pkgId=suse
-    ;;
   ubuntu-12)
     pkgId=ubuntu12
     ;;

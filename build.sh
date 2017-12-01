@@ -1,10 +1,9 @@
 #!/bin/bash
 
 
-
 main()
 {
-  local oses=(centos-6 centos-7 opensuse-13 ubuntu-12 ubuntu-14)
+  local oses=(centos-6 centos-7 ubuntu-12 ubuntu-14)
 
   for os in ${oses[*]}
   do
