@@ -9,9 +9,22 @@ main()
 
   for pkg in api microservices icommands
   do
-    /src/"$pkg"/packaging/build.sh -r
-    cp --update /src/"$pkg"/build/* /packages/"$os"
+    local pkgSrc=/src/"$pkg"
+
+    if build_needed "$pkgSrc" "$pkgSrc"/build
+    then
+      "$pkgSrc"/packaging/build.sh -r
+      cp --update "$pkgSrc"/build/* /packages/"$os"
+    else
+      printf 'Nothing to do for %s/\n' "$pkg"
+    fi
   done
+
+  # Gather irods-runtime contents
+  local tgzSrc=/src/tar
+  mkdir --parents "$tgzSrc"/irods/externals
+  cp --no-dereference --update /usr/lib/libirods*.so* "$tgzSrc"
+  cp --no-dereference --update /usr/lib/irods/externals/*.so* "$tgzSrc"/irods/externals
 
   local pkgId=
 
@@ -28,17 +41,33 @@ main()
       ;;
     ubuntu-14)
       pkgId=ubuntu14
-      ;;    
+      ;;
   esac
 
-  # Gather irods-runtime contents
-  mkdir --parents /src/tar/irods/externals
-  cp --no-dereference --update /usr/lib/libirods*.so* /src/tar
-  cp --no-dereference --update /usr/lib/irods/externals/*.so* /src/tar/irods/externals
+  local tgz=/packages/"$os"/irods-runtime-4.1.10-"$pkgId".tgz
 
-  tar --create --gzip \
-      --directory /src/tar --file /packages/"$os"/irods-runtime-4.1.10-"$pkgId".tgz \
-      .
+  if build_needed "$tgzSrc" "$tgz"
+  then
+    printf 'Creating %s\n' "$tgz"
+    tar --create --gzip --directory "$tgzSrc" --file "$tgz" .
+  else
+    printf '%s is up to date\n' "$tgz"
+  fi
+}
+
+
+build_needed()
+{
+  local srcDir="$1"
+  local artifact="$2"
+
+  if [ ! -e "$artifact" ]
+  then
+    return 0
+  fi
+
+  local findRes=$(find "$srcDir" -newer "$artifact" -printf ' ' -quit)
+  [ -n "$findRes" ]
 }
 
 
