@@ -22,29 +22,11 @@ main()
 
   # Gather irods-runtime contents
   local tgzSrc=/src/tar
+  local tgz=/packages/"$os"/irods-runtime-4.1.10-"$os".tgz
+
   mkdir --parents "$tgzSrc"/irods/externals
   cp --no-dereference --update /usr/lib/libirods*.so* "$tgzSrc"
   cp --no-dereference --update /usr/lib/irods/externals/*.so* "$tgzSrc"/irods/externals
-
-  local pkgId=
-
-  case "$os"
-  in
-    centos-6)
-      pkgId=centos6
-      ;;
-    centos-7)
-      pkgId=centos7
-      ;;
-    ubuntu-12)
-      pkgId=ubuntu12
-      ;;
-    ubuntu-14)
-      pkgId=ubuntu14
-      ;;
-  esac
-
-  local tgz=/packages/"$os"/irods-runtime-4.1.10-"$pkgId".tgz
 
   if build_needed "$tgzSrc" "$tgz"
   then
