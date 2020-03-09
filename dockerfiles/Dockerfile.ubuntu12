@@ -9,8 +9,8 @@ RUN apt-get --assume-yes update && \
     apt-get --assume-yes --no-install-recommends install \
       build-essential libcurl4-gnutls-dev libssl-dev wget && \
     wget --quiet \
-      ftp://ftp.renci.org/pub/irods/releases/4.1.10/ubuntu12/irods-dev-4.1.10-ubuntu12-x86_64.deb \
-      ftp://ftp.renci.org/pub/irods/releases/4.1.10/ubuntu12/irods-runtime-4.1.10-ubuntu12-x86_64.deb && \
+      https://files.renci.org/pub/irods/releases/4.1.10/ubuntu12/irods-dev-4.1.10-ubuntu12-x86_64.deb \
+      https://files.renci.org/pub/irods/releases/4.1.10/ubuntu12/irods-runtime-4.1.10-ubuntu12-x86_64.deb && \
     dpkg --install \
       /irods-dev-4.1.10-ubuntu12-x86_64.deb /irods-runtime-4.1.10-ubuntu12-x86_64.deb && \
     apt-get --assume-yes --fix-broken --no-install-recommends install && \
