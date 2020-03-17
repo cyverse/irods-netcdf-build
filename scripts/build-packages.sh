@@ -14,10 +14,10 @@ main()
     if build_needed "$pkgSrc" "$pkgSrc"/build
     then
       "$pkgSrc"/packaging/build.sh -r
-      cp --update "$pkgSrc"/build/* /packages/"$os"
     else
       printf 'Nothing to do for %s/\n' "$pkg"
     fi
+    cp --update "$pkgSrc"/build/* /packages/"$os"
   done
 
   # Gather irods-runtime contents
