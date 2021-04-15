@@ -5,13 +5,15 @@
 #
 # Parameters:
 #  OS  an operating system to build the packages for: centos6, centos7,
-#      ubuntu12, and ubuntu14
+#      ubuntu14
 #
 # Builds the iRODS NetCDF plugin packages. It writes them into an OS specific
 # subdirectory of packages/.
 #
 
-readonly AllOSes=(centos6 centos7 ubuntu12 ubuntu14)
+set -e
+
+readonly AllOSes=(centos6 centos7 ubuntu14)
 
 
 main()
@@ -86,14 +88,6 @@ build_selected()
     done
   fi
 
-  if [ -e "$baseDir"/packages/ubuntu12 ]
-  then
-    for f in $(ls "$baseDir"/packages/ubuntu12/*0.deb 2> /dev/null)
-    do
-      mv "$f" "${f/.deb/-ubuntu12.deb}"
-    done
-  fi
-
   if [ -e "$baseDir"/packages/ubuntu14 ]
   then
     for f in $(ls "$baseDir"/packages/ubuntu14/*0.deb 2> /dev/null)
@@ -103,7 +97,5 @@ build_selected()
   fi
 }
 
-
-set -e
 
 main "$@"
